@@ -187,7 +187,7 @@
         result.innerHTML = "";
         let valor = Number(numero.value);
 
-        if (valor < 1 || valor > 10) {
+        if (valor < 1 || valor > 10 || !Number.isInteger(valor)) {
           result.innerHTML = "Digite um número entre 1 e 10";
           return;
         }
