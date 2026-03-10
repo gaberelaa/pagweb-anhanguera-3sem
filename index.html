@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=], initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap"
+      rel="stylesheet"
+    />
+    <title>Página web simples</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'DM Sans', sans-serif;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: linear-gradient(180deg, #fff7f3, #ffe7df);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1d1d1f;
+      }
+
+      /* Layout principal */
+      main {
+        width: 100%;
+        max-width: 700px;
+        padding: 40px;
+      }
+
+      /* Título estilo Apple */
+      .titulo {
+        text-align: center;
+        font-size: 2.4rem;
+        font-weight: 600;
+        margin-bottom: 40px;
+        letter-spacing: -0.5px;
+        font-family: 'DM Serif Display', serif;
+        color: #515152;
+      }
+
+      /* Card central */
+      .tabuada {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        padding: 35px;
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.08),
+          0 2px 6px rgba(0, 0, 0, 0.04);
+        transition: 0.3s;
+      }
+
+      /* Label */
+      .label {
+        font-size: 0.9rem;
+        color: #6e6e73;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      /* Input */
+      .input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 10px;
+        border: 1px solid #e5e5e7;
+        font-size: 1rem;
+        margin-bottom: 15px;
+        transition: all 0.25s;
+        outline: none;
+      }
+
+      .input:focus {
+        border-color: #ffb8a5;
+        box-shadow: 0 0 0 4px rgba(255, 184, 165, 0.25);
+      }
+
+      /* Botão estilo Apple */
+      .button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: #ff9f85;
+        color: white;
+        font-weight: 500;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+
+      .button:hover {
+        background: #ff8a6c;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      }
+
+      .button:active {
+        transform: scale(0.98);
+      }
+
+      /* Resultado */
+      .result {
+        margin-top: 25px;
+        padding-top: 15px;
+        border-top: 1px solid #f0f0f0;
+        line-height: 1.8;
+        font-size: 1rem;
+      }
+
+      .result h2 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      /* Responsivo */
+      @media (max-width: 600px) {
+        main {
+          padding: 25px;
+        }
+
+        .titulo {
+          font-size: 1.8rem;
+        }
+
+        .tabuada {
+          padding: 25px;
+        }
+      }
+
+      .button-clear {
+        display: none;
+        background: #ffd6c9;
+        color: #6b3d32;
+        margin-top: 15px;
+      }
+
+      .button-clear:hover {
+        background: #ffb8a5;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      }
+
+      .button-clear:active {
+        transform: scale(0.98);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 class="titulo">Gerador de Tabuada Interativo</h1>
+
+      <div class="tabuada">
+        <div>
+          <label for="number" class="label">Digite um número</label>
+          <input
+            type="number"
+            id="number"
+            min="1"
+            max="2"
+            placeholder="Digite um número de 1 a 10"
+            class="input"
+          />
+          <button id="botao" class="button">Calcular</button>
+        </div>
+        <div id="result" class="result"></div>
+        <button id="limpar" class="button button-clear">Limpar</button>
+      </div>
+    </main>
+
+    <script>
+      const numero = document.getElementById("number");
+      const calcular = document.getElementById("botao");
+      const result = document.getElementById("result");
+      const botaoLimpar = document.getElementById("limpar");
+
+      calcular.addEventListener("click", function () {
+        result.innerHTML = "";
+        let valor = Number(numero.value);
+
+        if (valor < 1 || valor > 10) {
+          result.innerHTML = "Digite um número entre 1 e 10";
+          return;
+        }
+
+        result.innerHTML = "<h2>Resultado Tabuada do " + valor + "</h2>";
+
+        for (let i = 1; i <= 10; i++) {
+          result.innerHTML += valor + " × " + i + " = " + valor * i + "<br>";
+        }
+
+        limpar.style.display = "block";
+
+        limpar.addEventListener("click", function () {
+          result.innerHTML = "";
+          numero.value = "";
+          limpar.style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>
